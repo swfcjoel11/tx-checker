@@ -9,7 +9,7 @@ test('Check Twickets for ticket availability', async ({ page }) => {
     waitUntil: 'networkidle'
   });
 
-  // Look for ticket listing cards (they usually have a "listing-card" class)
+  // Look for ticket listing cards
   const listings = await page.$$('.listing-card');
   console.log(`Found ${listings.length} ticket(s).`);
 
@@ -26,6 +26,6 @@ test('Check Twickets for ticket availability', async ({ page }) => {
     console.log('✅ SMS sent!');
   }
 
-  // Keep Playwright test runner happy (you can remove this if not needed)
+  // Keep Playwright test runner happy
   expect(listings.length).toBeGreaterThanOrEqual(0);
 });
