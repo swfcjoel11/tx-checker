@@ -1,4 +1,4 @@
-name: Check Twickets Every 5 Minutes
+name: Check Twickets Every 3 Minutes
 
 on:
   schedule:
@@ -24,8 +24,8 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install NPM dependencies
+        run: npm install
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
