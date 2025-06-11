@@ -2,7 +2,7 @@ name: Check Twickets Every 3 Minutes
 
 on:
   schedule:
-    - cron: '*/3 * * * *'
+    - cron: '*/3 * * * *'  # Every 3 minutes
   workflow_dispatch:
 
 jobs:
@@ -16,24 +16,24 @@ jobs:
       MY_PHONE_NUMBER: ${{ secrets.MY_PHONE_NUMBER }}
 
     steps:
-      - name: Checkout code
+      - name: 📥 Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: 🟢 Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install NPM dependencies
-        run: npm install
+      - name: 📦 Install dependencies
+        run: npm ci
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+      - name: 🔧 Install Playwright Browsers
+        run: npx @playwright/test install --with-deps
 
-      - name: Run test
+      - name: ▶️ Run Playwright Test
         run: npx playwright test
 
-      - name: Upload test results
+      - name: 📤 Upload test results on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
